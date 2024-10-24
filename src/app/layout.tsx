@@ -1,23 +1,23 @@
-import type { Metadata } from "next"
-import localFont from "next/font/local"
-import { Navbar } from "@/components/navbar"
-import "./globals.css"
+import { Navbar } from "@/components/navbar";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import "./globals.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
-})
+});
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
-})
+});
 
 export const metadata: Metadata = {
   title: "Real-Time Monitoring",
   description: "Real-time monitoring system with AI analysis",
-}
+};
 
 export default function RootLayout({
   children,
@@ -31,5 +31,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  )
+  );
 }

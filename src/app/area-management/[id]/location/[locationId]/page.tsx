@@ -1,40 +1,40 @@
-"use client"
+"use client";
 
-import { useParams, useRouter } from "next/navigation"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { useMonitoringStore } from "@/store/monitoring"
-import { CameraDialog } from "@/components/monitoring/camera-dialog"
-import type { Camera } from "@/lib/types/monitoring"
+import { CameraDialog } from "@/components/monitoring/camera-dialog";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import type { Camera } from "@/lib/types/monitoring";
+import { useMonitoringStore } from "@/store/monitoring";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 
 export default function EditLocationPage() {
-  const { id, locationId } = useParams()
-  const router = useRouter()
-  const areas = useMonitoringStore((state) => state.areas)
-  const area = areas.find((a) => a.id === id)
-  const location = area?.locations.find((l) => l.id === locationId)
-  const [dialogOpen, setDialogOpen] = useState(false)
-  const [selectedCamera, setSelectedCamera] = useState<Camera | undefined>()
+  const { id, locationId } = useParams();
+  // const router = useRouter();
+  const areas = useMonitoringStore((state) => state.areas);
+  const area = areas.find((a) => a.id === id);
+  const location = area?.locations.find((l) => l.id === locationId);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedCamera, setSelectedCamera] = useState<Camera | undefined>();
 
   if (!area || !location) {
-    return <div>Location not found</div>
+    return <div>Location not found</div>;
   }
 
   const handleAddCamera = () => {
-    setSelectedCamera(undefined)
-    setDialogOpen(true)
-  }
+    setSelectedCamera(undefined);
+    setDialogOpen(true);
+  };
 
   const handleEditCamera = (camera: Camera) => {
-    setSelectedCamera(camera)
-    setDialogOpen(true)
-  }
+    setSelectedCamera(camera);
+    setDialogOpen(true);
+  };
 
   const handleSaveCamera = (data: Partial<Camera>) => {
     // Handle save logic here
-    console.log("Save camera:", data)
-  }
+    console.log("Save camera:", data);
+  };
 
   return (
     <main className="min-h-[calc(100vh-3.5rem)] p-4 md:p-6">
@@ -101,5 +101,5 @@ export default function EditLocationPage() {
         onSave={handleSaveCamera}
       />
     </main>
-  )
+  );
 }

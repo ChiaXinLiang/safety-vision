@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
-import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
 
 interface VideoFilterProps {
   onApply: () => void
@@ -17,31 +17,31 @@ export function VideoFilter({ onApply }: VideoFilterProps) {
     allZoneTypes: true,
     zoneType1: true,
     zoneType2: true,
-  })
+  });
 
   const handleLabelToggle = (key: keyof typeof filters) => {
     setFilters(prev => {
-      const newFilters = { ...prev, [key]: !prev[key] }
+      const newFilters = { ...prev, [key]: !prev[key] };
       
       // Handle "All Labels" logic
       if (key === "allLabels") {
-        newFilters.person = !prev.allLabels
-        newFilters.crane = !prev.allLabels
+        newFilters.person = !prev.allLabels;
+        newFilters.crane = !prev.allLabels;
       } else if (key === "person" || key === "crane") {
-        newFilters.allLabels = newFilters.person && newFilters.crane
+        newFilters.allLabels = newFilters.person && newFilters.crane;
       }
 
       // Handle "All Zone Types" logic
       if (key === "allZoneTypes") {
-        newFilters.zoneType1 = !prev.allZoneTypes
-        newFilters.zoneType2 = !prev.allZoneTypes
+        newFilters.zoneType1 = !prev.allZoneTypes;
+        newFilters.zoneType2 = !prev.allZoneTypes;
       } else if (key === "zoneType1" || key === "zoneType2") {
-        newFilters.allZoneTypes = newFilters.zoneType1 && newFilters.zoneType2
+        newFilters.allZoneTypes = newFilters.zoneType1 && newFilters.zoneType2;
       }
 
-      return newFilters
-    })
-  }
+      return newFilters;
+    });
+  };
 
   const handleReset = () => {
     setFilters({
@@ -51,8 +51,8 @@ export function VideoFilter({ onApply }: VideoFilterProps) {
       allZoneTypes: true,
       zoneType1: true,
       zoneType2: true,
-    })
-  }
+    });
+  };
 
   return (
     <div className="space-y-6 p-4">
@@ -128,5 +128,5 @@ export function VideoFilter({ onApply }: VideoFilterProps) {
         </Button>
       </div>
     </div>
-  )
+  );
 }

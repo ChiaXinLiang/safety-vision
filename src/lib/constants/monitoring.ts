@@ -101,4 +101,4 @@ export const MOCK_AREAS = [
       },
     ],
   },
-] as const
+] as const;

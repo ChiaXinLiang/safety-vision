@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { format } from "date-fns"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog"
-import { CalendarIcon } from "@radix-ui/react-icons"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { format } from "date-fns";
+import * as React from "react";
 
 type TimeOption = "1h" | "4h" | "8h" | "12h" | "24h" | "custom"
 
@@ -30,30 +30,30 @@ export function VideoExportDialog({
   currentTime,
   onExport 
 }: VideoExportDialogProps) {
-  const [timeOption, setTimeOption] = React.useState<TimeOption>("custom")
+  const [timeOption, setTimeOption] = React.useState<TimeOption>("custom");
   const [customRange, setCustomRange] = React.useState<[Date, Date]>([
     new Date(currentTime.getTime() - 60 * 60 * 1000), // 1 hour before
     new Date(currentTime)
-  ])
-  const [exportName, setExportName] = React.useState("")
+  ]);
+  const [exportName, setExportName] = React.useState("");
 
   // Update time range based on selected option
   React.useEffect(() => {
-    if (timeOption === "custom") return
+    if (timeOption === "custom") return;
 
-    const hours = parseInt(timeOption)
-    const end = new Date(currentTime)
-    const start = new Date(currentTime.getTime() - hours * 60 * 60 * 1000)
-    setCustomRange([start, end])
-  }, [timeOption, currentTime])
+    const hours = parseInt(timeOption);
+    const end = new Date(currentTime);
+    const start = new Date(currentTime.getTime() - hours * 60 * 60 * 1000);
+    setCustomRange([start, end]);
+  }, [timeOption, currentTime]);
 
   const handleExport = () => {
     onExport({
       timeRange: customRange,
       name: exportName.trim() || "Exported Video"
-    })
-    onOpenChange(false)
-  }
+    });
+    onOpenChange(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -131,5 +131,5 @@ export function VideoExportDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

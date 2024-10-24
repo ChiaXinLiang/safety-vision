@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import { useParams, useSearchParams, useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { useMonitoringStore } from "@/store/monitoring"
-import { findCameraById } from "@/lib/utils/monitoring"
+import { Button } from "@/components/ui/button";
+import { findCameraById } from "@/lib/utils/monitoring";
+import { useMonitoringStore } from "@/store/monitoring";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 export default function CameraPage() {
-  const { id } = useParams()
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const areas = useMonitoringStore((state) => state.areas)
-  const camera = findCameraById(areas, id as string)
+  const { id } = useParams();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const areas = useMonitoringStore((state) => state.areas);
+  const camera = findCameraById(areas, id as string);
   
   if (!camera) {
-    return <div>Camera not found</div>
+    return <div>Camera not found</div>;
   }
 
-  const { area, location } = camera
-  const mode = searchParams.get("mode") || "raw"
-  const isAIMode = mode === "ai"
+  const { area, location } = camera;
+  const mode = searchParams.get("mode") || "raw";
+  const isAIMode = mode === "ai";
 
   const toggleMode = () => {
-    const newMode = isAIMode ? "raw" : "ai"
-    router.push(`/camera/${id}?mode=${newMode}`)
-  }
+    const newMode = isAIMode ? "raw" : "ai";
+    router.push(`/camera/${id}?mode=${newMode}`);
+  };
 
   return (
     <main className="min-h-[calc(100vh-3.5rem)] p-4 md:p-6">
@@ -82,5 +82,5 @@ export default function CameraPage() {
         )}
       </div>
     </main>
-  )
+  );
 }

@@ -1,20 +1,19 @@
-"use client"
+"use client";
 
-import { useParams, useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { useMonitoringStore } from "@/store/monitoring"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { useMonitoringStore } from "@/store/monitoring";
+import { useParams, useRouter } from "next/navigation";
 
 export default function EditAreaPage() {
-  const { id } = useParams()
-  const router = useRouter()
-  const areas = useMonitoringStore((state) => state.areas)
-  const area = areas.find((a) => a.id === id)
+  const { id } = useParams();
+  const router = useRouter();
+  const areas = useMonitoringStore((state) => state.areas);
+  const area = areas.find((a) => a.id === id);
 
   if (!area) {
-    return <div>Area not found</div>
+    return <div>Area not found</div>;
   }
 
   return (
@@ -66,5 +65,5 @@ export default function EditAreaPage() {
         </Card>
       </div>
     </main>
-  )
+  );
 }

@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
+import { AreaSelector } from "@/components/monitoring/area-selector";
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import { AreaSelector } from "@/components/monitoring/area-selector"
-import { useMonitoringStore } from "@/store/monitoring"
-import { useRouter } from "next/navigation"
+} from "@/components/ui/sheet";
+import { useMonitoringStore } from "@/store/monitoring";
+import { useRouter } from "next/navigation";
 
 export function PageHeader() {
-  const router = useRouter()
-  const selectedAreas = useMonitoringStore((state) => state.selectedAreas)
+  const router = useRouter();
+  const selectedAreas = useMonitoringStore((state) => state.selectedAreas);
 
   return (
     <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -47,5 +47,5 @@ export function PageHeader() {
         <Button variant="outline">Setting</Button>
       </div>
     </div>
-  )
+  );
 }

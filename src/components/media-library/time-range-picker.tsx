@@ -1,17 +1,16 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import type { TimeRange } from "@/app/media-library/page";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { Calendar } from "@/components/ui/calendar"
-import { format } from "date-fns"
-import { cn } from "@/lib/utils"
-import { CalendarIcon } from "@radix-ui/react-icons"
-import type { TimeRange } from "@/app/media-library/page"
+} from "@/components/ui/popover";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { format } from "date-fns";
+import { useState } from "react";
 
 interface TimeRangePickerProps {
   value: TimeRange
@@ -19,35 +18,35 @@ interface TimeRangePickerProps {
 }
 
 export function TimeRangePicker({ value, onChange }: TimeRangePickerProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const formatTimeRange = (range: TimeRange) => {
-    return `${format(range.start, "yyyy/MM/dd HH:mm")} - ${format(range.end, "HH:mm")}`
-  }
+    return `${format(range.start, "yyyy/MM/dd HH:mm")} - ${format(range.end, "HH:mm")}`;
+  };
 
   const handleDateSelect = (date: Date | undefined) => {
-    if (!date) return
+    if (!date) return;
 
     // Keep the same hours but update the date
-    const newStart = new Date(date)
-    newStart.setHours(value.start.getHours(), value.start.getMinutes())
+    const newStart = new Date(date);
+    newStart.setHours(value.start.getHours(), value.start.getMinutes());
     
-    const newEnd = new Date(date)
-    newEnd.setHours(value.end.getHours(), value.end.getMinutes())
+    const newEnd = new Date(date);
+    newEnd.setHours(value.end.getHours(), value.end.getMinutes());
 
-    onChange({ start: newStart, end: newEnd })
-  }
+    onChange({ start: newStart, end: newEnd });
+  };
 
   const handleTimeChange = (type: "start" | "end", timeStr: string) => {
-    const [hours, minutes] = timeStr.split(":").map(Number)
-    const newDate = new Date(type === "start" ? value.start : value.end)
-    newDate.setHours(hours, minutes)
+    const [hours, minutes] = timeStr.split(":").map(Number);
+    const newDate = new Date(type === "start" ? value.start : value.end);
+    newDate.setHours(hours, minutes);
     
     onChange({
       ...value,
       [type]: newDate
-    })
-  }
+    });
+  };
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -90,5 +89,5 @@ export function TimeRangePicker({ value, onChange }: TimeRangePickerProps) {
         </div>
       </PopoverContent>
     </Popover>
-  )
+  );
 }

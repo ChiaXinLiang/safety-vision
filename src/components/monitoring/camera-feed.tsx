@@ -1,6 +1,6 @@
-import { useRouter, useSearchParams } from "next/navigation"
-import { cn } from "@/lib/utils"
-import type { Camera } from "@/lib/types/monitoring"
+import type { Camera } from "@/lib/types/monitoring";
+import { cn } from "@/lib/utils";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface CameraFeedProps {
   camera: Camera
@@ -8,9 +8,9 @@ interface CameraFeedProps {
 }
 
 export function CameraFeed({ camera, className }: CameraFeedProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const mode = searchParams.get("mode") || "raw"
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode") || "raw";
 
   return (
     <div className="space-y-2">
@@ -34,5 +34,5 @@ export function CameraFeed({ camera, className }: CameraFeedProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

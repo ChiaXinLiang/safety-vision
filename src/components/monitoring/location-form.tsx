@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import type { Location } from "@/lib/types/monitoring"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import type { Location } from "@/lib/types/monitoring";
 
 interface LocationFormProps {
   location: Location
@@ -64,5 +64,5 @@ export function LocationForm({ location }: LocationFormProps) {
         </Button>
       </div>
     </Card>
-  )
+  );
 }

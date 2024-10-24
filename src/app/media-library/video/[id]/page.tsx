@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import { useParams, useSearchParams, useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { VideoTimeline } from "@/components/media-library/video-timeline"
-import { VideoPlayer } from "@/components/media-library/video-player"
-import { VideoExportDialog } from "@/components/media-library/video-export-dialog"
-import { ArrowLeftIcon, CalendarIcon, DownloadIcon, MixerHorizontalIcon } from "@radix-ui/react-icons"
-import { useState } from "react"
+import { VideoExportDialog } from "@/components/media-library/video-export-dialog";
+import { VideoPlayer } from "@/components/media-library/video-player";
+import { VideoTimeline } from "@/components/media-library/video-timeline";
+import { Button } from "@/components/ui/button";
+import { ArrowLeftIcon, CalendarIcon, DownloadIcon, MixerHorizontalIcon } from "@radix-ui/react-icons";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function VideoPlayerPage() {
-  const router = useRouter()
-  const { id } = useParams()
-  const [currentTime, setCurrentTime] = useState<Date>(new Date(2024, 0, 24, 11, 30))
-  const [exportDialogOpen, setExportDialogOpen] = useState(false)
+  const router = useRouter();
+  // const { id } = useParams();
+  const [currentTime, setCurrentTime] = useState<Date>(new Date(2024, 0, 24, 11, 30));
+  const [exportDialogOpen, setExportDialogOpen] = useState(false);
 
   const handleExport = (data: { timeRange: [Date, Date], name: string }) => {
     // Handle export logic here
-    console.log("Exporting video:", data)
-  }
+    console.log("Exporting video:", data);
+  };
 
   return (
     <main className="min-h-screen bg-background">
@@ -66,5 +66,5 @@ export default function VideoPlayerPage() {
         onExport={handleExport}
       />
     </main>
-  )
+  );
 }

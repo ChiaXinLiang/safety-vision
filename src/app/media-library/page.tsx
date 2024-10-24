@@ -1,20 +1,17 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { AreaSelector } from "@/components/media-library/area-selector";
+import { TimeRangePicker } from "@/components/media-library/time-range-picker";
+import { VideoFilter } from "@/components/media-library/video-filter";
+import { VideoGrid } from "@/components/media-library/video-grid";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { Calendar } from "@/components/ui/calendar"
-import { format } from "date-fns"
-import { cn } from "@/lib/utils"
-import { VideoGrid } from "@/components/media-library/video-grid"
-import { VideoFilter } from "@/components/media-library/video-filter"
-import { AreaSelector } from "@/components/media-library/area-selector"
-import { TimeRangePicker } from "@/components/media-library/time-range-picker"
-import { CalendarIcon, MixerHorizontalIcon } from "@radix-ui/react-icons"
+} from "@/components/ui/popover";
+import { MixerHorizontalIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
 
 export type TimeRange = {
   start: Date
@@ -25,8 +22,8 @@ export default function MediaLibraryPage() {
   const [timeRange, setTimeRange] = useState<TimeRange>({
     start: new Date(2024, 0, 24, 11, 0), // 11:00
     end: new Date(2024, 0, 24, 12, 0),   // 12:00
-  })
-  const [filterOpen, setFilterOpen] = useState(false)
+  });
+  const [filterOpen, setFilterOpen] = useState(false);
 
   return (
     <main className="min-h-[calc(100vh-3.5rem)] p-4 md:p-6">
@@ -87,5 +84,5 @@ export default function MediaLibraryPage() {
         </div>
       </div>
     </main>
-  )
+  );
 }

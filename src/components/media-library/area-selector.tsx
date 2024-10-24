@@ -1,46 +1,45 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Switch } from "@/components/ui/switch"
-import { useMonitoringStore } from "@/store/monitoring"
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
+import { Switch } from "@/components/ui/switch";
+import { useMonitoringStore } from "@/store/monitoring";
+import { useState } from "react";
 
 export function AreaSelector() {
-  const areas = useMonitoringStore((state) => state.areas)
-  const [selectedAreas, setSelectedAreas] = useState<string[]>(areas.map(a => a.id))
-  const [isAllSelected, setIsAllSelected] = useState(true)
+  const areas = useMonitoringStore((state) => state.areas);
+  const [selectedAreas, setSelectedAreas] = useState<string[]>(areas.map(a => a.id));
+  const [isAllSelected, setIsAllSelected] = useState(true);
 
   const handleAllAreasToggle = () => {
     if (isAllSelected) {
-      setSelectedAreas([])
-      setIsAllSelected(false)
+      setSelectedAreas([]);
+      setIsAllSelected(false);
     } else {
-      setSelectedAreas(areas.map(a => a.id))
-      setIsAllSelected(true)
+      setSelectedAreas(areas.map(a => a.id));
+      setIsAllSelected(true);
     }
-  }
+  };
 
   const handleAreaToggle = (areaId: string) => {
     setSelectedAreas(prev => {
       const newSelection = prev.includes(areaId)
         ? prev.filter(id => id !== areaId)
-        : [...prev, areaId]
+        : [...prev, areaId];
       
-      setIsAllSelected(newSelection.length === areas.length)
-      return newSelection
-    })
-  }
+      setIsAllSelected(newSelection.length === areas.length);
+      return newSelection;
+    });
+  };
 
   const handleReset = () => {
-    setSelectedAreas(areas.map(a => a.id))
-    setIsAllSelected(true)
-  }
+    setSelectedAreas(areas.map(a => a.id));
+    setIsAllSelected(true);
+  };
 
   return (
     <Popover>
@@ -48,7 +47,7 @@ export function AreaSelector() {
         <Button variant="outline" className="w-[180px]">
           {isAllSelected 
             ? "All Areas" 
-            : `${selectedAreas.length} Area${selectedAreas.length === 1 ? '' : 's'}`}
+            : `${selectedAreas.length} Area${selectedAreas.length === 1 ? "" : "s"}`}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[240px] p-4" align="start">
@@ -90,5 +89,5 @@ export function AreaSelector() {
         </div>
       </PopoverContent>
     </Popover>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { CameraFeed } from "./camera-feed"
+import { Button } from "@/components/ui/button";
+import { CameraFeed } from "./camera-feed";
 
 interface MonitoringLocationProps {
   location: {
@@ -17,8 +17,8 @@ interface MonitoringLocationProps {
 }
 
 export function MonitoringLocation({ location }: MonitoringLocationProps) {
-  const mainCamera = location.cameras.find((c) => c.type === "main")
-  const subCameras = location.cameras.filter((c) => c.type === "sub")
+  const mainCamera = location.cameras.find((c) => c.type === "main");
+  const subCameras = location.cameras.filter((c) => c.type === "sub");
 
   return (
     <div className="rounded-lg bg-[#40B7CB] p-4">
@@ -48,5 +48,5 @@ export function MonitoringLocation({ location }: MonitoringLocationProps) {
         )}
       </div>
     </div>
-  )
+  );
 }

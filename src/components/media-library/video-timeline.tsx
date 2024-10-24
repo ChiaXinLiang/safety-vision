@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useRef } from "react"
+import { useRef } from "react";
 
 interface VideoTimelineProps {
   currentTime: Date
@@ -8,43 +8,43 @@ interface VideoTimelineProps {
 }
 
 export function VideoTimeline({ currentTime, onTimeChange }: VideoTimelineProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Handle timeline click/drag
   const handleTimelineInteraction = (clientY: number) => {
-    if (!containerRef.current) return
+    if (!containerRef.current) return;
 
-    const { top, height } = containerRef.current.getBoundingClientRect()
-    const percentage = Math.max(0, Math.min(1, (clientY - top) / height))
+    const { top, height } = containerRef.current.getBoundingClientRect();
+    const percentage = Math.max(0, Math.min(1, (clientY - top) / height));
     
     // Convert percentage to time (assuming 24-hour range)
-    const hours = Math.floor(percentage * 24)
-    const minutes = Math.floor((percentage * 24 * 60) % 60)
+    const hours = Math.floor(percentage * 24);
+    const minutes = Math.floor((percentage * 24 * 60) % 60);
     
-    const newTime = new Date(currentTime)
-    newTime.setHours(hours, minutes)
-    onTimeChange(newTime)
-  }
+    const newTime = new Date(currentTime);
+    newTime.setHours(hours, minutes);
+    onTimeChange(newTime);
+  };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault()
-    handleTimelineInteraction(e.clientY)
+    e.preventDefault();
+    handleTimelineInteraction(e.clientY);
 
     const handleMouseMove = (e: MouseEvent) => {
-      handleTimelineInteraction(e.clientY)
-    }
+      handleTimelineInteraction(e.clientY);
+    };
 
     const handleMouseUp = () => {
-      document.removeEventListener("mousemove", handleMouseMove)
-      document.removeEventListener("mouseup", handleMouseUp)
-    }
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
 
-    document.addEventListener("mousemove", handleMouseMove)
-    document.addEventListener("mouseup", handleMouseUp)
-  }
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
 
   // Calculate current time position
-  const timePercentage = (currentTime.getHours() * 60 + currentTime.getMinutes()) / (24 * 60)
+  const timePercentage = (currentTime.getHours() * 60 + currentTime.getMinutes()) / (24 * 60);
 
   return (
     <div className="relative border-r bg-black p-2" ref={containerRef}>
@@ -84,5 +84,5 @@ export function VideoTimeline({ currentTime, onTimeChange }: VideoTimelineProps)
         </div>
       </div>
     </div>
-  )
+  );
 }

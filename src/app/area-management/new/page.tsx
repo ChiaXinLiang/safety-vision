@@ -1,24 +1,23 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { useMonitoringStore } from "@/store/monitoring"
-import { useState } from "react"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function AddNewAreaPage() {
-  const router = useRouter()
-  const [areaName, setAreaName] = useState("")
-  const [description, setDescription] = useState("")
+  const router = useRouter();
+  const [areaName, setAreaName] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Add validation and store update logic here
-    router.push("/area-management")
-  }
+    router.push("/area-management");
+  };
 
   return (
     <main className="min-h-[calc(100vh-3.5rem)] p-4 md:p-6">
@@ -62,5 +61,5 @@ export default function AddNewAreaPage() {
         </form>
       </div>
     </main>
-  )
+  );
 }

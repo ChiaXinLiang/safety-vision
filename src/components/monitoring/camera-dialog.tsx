@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import type { Camera } from "@/lib/types/monitoring"
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import type { Camera } from "@/lib/types/monitoring";
+import * as React from "react";
 
 interface CameraDialogProps {
   open: boolean
@@ -29,19 +29,19 @@ interface CameraDialogProps {
 }
 
 export function CameraDialog({ open, onOpenChange, camera, onSave }: CameraDialogProps) {
-  const [sourceType, setSourceType] = React.useState<"local" | "url">("local")
+  const [sourceType, setSourceType] = React.useState<"local" | "url">("local");
   const [formData, setFormData] = React.useState({
     name: camera?.name || "",
     type: camera?.type || "main",
     description: "",
     source: "",
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSave(formData)
-    onOpenChange(false)
-  }
+    e.preventDefault();
+    onSave(formData);
+    onOpenChange(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -135,5 +135,5 @@ export function CameraDialog({ open, onOpenChange, camera, onSave }: CameraDialo
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

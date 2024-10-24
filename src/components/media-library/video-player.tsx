@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { format } from "date-fns"
+import { format } from "date-fns";
 
 interface VideoPlayerProps {
   currentTime: Date
@@ -16,5 +16,5 @@ export function VideoPlayer({ currentTime }: VideoPlayerProps) {
         {format(currentTime, "HH:mm:ss")}
       </div>
     </div>
-  )
+  );
 }

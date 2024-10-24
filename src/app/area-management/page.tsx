@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { useMonitoringStore } from "@/store/monitoring"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { useMonitoringStore } from "@/store/monitoring";
+import { useRouter } from "next/navigation";
 
 export default function AreaManagementPage() {
-  const router = useRouter()
-  const areas = useMonitoringStore((state) => state.areas)
+  const router = useRouter();
+  const areas = useMonitoringStore((state) => state.areas);
 
   return (
     <main className="min-h-[calc(100vh-3.5rem)] bg-gray-50/40 p-4 md:p-6">
@@ -62,5 +62,5 @@ export default function AreaManagementPage() {
         ))}
       </Card>
     </main>
-  )
+  );
 }

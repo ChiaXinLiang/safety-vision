@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { AreaCard } from "./area-card"
-import { AlertList } from "./alert-list"
-import { useMonitoringStore } from "@/store/monitoring"
+import { useMonitoringStore } from "@/store/monitoring";
+import { AlertList } from "./alert-list";
+import { AreaCard } from "./area-card";
 
 export function MonitoringDashboard() {
-  const selectedAreas = useMonitoringStore((state) => state.selectedAreas)
+  const selectedAreas = useMonitoringStore((state) => state.selectedAreas);
 
   if (selectedAreas.length === 0) {
     return (
@@ -15,7 +15,7 @@ export function MonitoringDashboard() {
         </div>
         <AlertList />
       </div>
-    )
+    );
   }
 
   return (
@@ -27,5 +27,5 @@ export function MonitoringDashboard() {
       </div>
       <AlertList />
     </div>
-  )
+  );
 }

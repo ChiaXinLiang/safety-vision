@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { useRouter, useSearchParams } from "next/navigation"
-import { CameraFeed } from "./camera-feed"
-import type { Location } from "@/lib/types/monitoring"
+import { Button } from "@/components/ui/button";
+import type { Location } from "@/lib/types/monitoring";
+import { useRouter, useSearchParams } from "next/navigation";
+import { CameraFeed } from "./camera-feed";
 
 interface LocationCardProps {
   location: Location
 }
 
 export function LocationCard({ location }: LocationCardProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const mode = searchParams.get("mode") || "raw"
-  const mainCamera = location.cameras.find((c) => c.type === "main")
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode") || "raw";
+  const mainCamera = location.cameras.find((c) => c.type === "main");
   // Limit to first 4 sub cameras
   const subCameras = location.cameras
     .filter((c) => c.type === "sub")
-    .slice(0, 4)
+    .slice(0, 4);
 
   const toggleMode = () => {
-    if (!mainCamera) return
-    const newMode = mode === "ai" ? "raw" : "ai"
-    router.push(`/camera/${mainCamera.id}?mode=${newMode}`)
-  }
+    if (!mainCamera) return;
+    const newMode = mode === "ai" ? "raw" : "ai";
+    router.push(`/camera/${mainCamera.id}?mode=${newMode}`);
+  };
 
   return (
     <div className="rounded-lg bg-[#40B7CB] p-4">
@@ -55,5 +55,5 @@ export function LocationCard({ location }: LocationCardProps) {
         )}
       </div>
     </div>
-  )
+  );
 }

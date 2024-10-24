@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { create } from "zustand"
+import { create } from "zustand";
 
 export const MOCK_AREAS = [
   {
@@ -87,7 +87,7 @@ export const MOCK_AREAS = [
       },
     ],
   },
-]
+];
 
 interface MonitoringState {
   areas: typeof MOCK_AREAS
@@ -101,4 +101,4 @@ export const useMonitoring = create<MonitoringState>((set, get) => ({
   selectedArea: MOCK_AREAS[0].id,
   setSelectedArea: (areaId) => set({ selectedArea: areaId }),
   currentArea: MOCK_AREAS[0],
-}))
+}));

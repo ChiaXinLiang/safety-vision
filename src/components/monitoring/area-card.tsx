@@ -1,15 +1,15 @@
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { LocationCard } from "./location-card"
-import { useRouter } from "next/navigation"
-import type { Area } from "@/lib/types/monitoring"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import type { Area } from "@/lib/types/monitoring";
+import { useRouter } from "next/navigation";
+import { LocationCard } from "./location-card";
 
 interface AreaCardProps {
   area: Area
 }
 
 export function AreaCard({ area }: AreaCardProps) {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Card className="overflow-hidden">
@@ -29,5 +29,5 @@ export function AreaCard({ area }: AreaCardProps) {
         ))}
       </div>
     </Card>
-  )
+  );
 }

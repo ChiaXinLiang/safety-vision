@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card"
+import { Card } from "@/components/ui/card";
 
 const MOCK_ALERTS = [
   {
@@ -16,7 +16,7 @@ const MOCK_ALERTS = [
     message: "All clear: Safety check completed in Area 2",
     time: "1h ago", 
   },
-] as const
+] as const;
 
 export function AlertList() {
   return (
@@ -39,5 +39,5 @@ export function AlertList() {
         </div>
       </div>
     </Card>
-  )
+  );
 }
