@@ -3,10 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { GearIcon, HomeIcon, VideoIcon } from "@radix-ui/react-icons";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
-  const router = useRouter();
   const pathname = usePathname();
 
   const links = [
@@ -22,18 +22,23 @@ export function Navbar() {
         {links.map((link) => {
           const Icon = link.icon;
           return (
-            <Button
-              key={link.href}
-              variant="ghost"
-              className={cn(
-                "gap-2",
-                pathname === link.href && "bg-accent"
-              )}
-              onClick={() => router.push(link.href)}
-            >
-              {Icon && <Icon className="h-4 w-4" />}
-              <span>{link.label}</span>
-            </Button>
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+            <Link key={link.href} href={link.href} passHref legacyBehavior>
+              <Button
+                variant="ghost"
+                className={cn(
+                  "gap-2 cursor-pointer",
+                  pathname === link.href && "bg-accent"
+                )}
+                asChild
+              >
+                <div>
+                  {Icon && <Icon className="h-4 w-4" />}
+                  <span>{link.label}</span>
+                </div>
+              </Button>
+            </Link>
           );
         })}
       </div>
