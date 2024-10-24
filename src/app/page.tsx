@@ -1,7 +1,7 @@
-import { Suspense } from "react"
-import { MonitoringDashboard } from "@/components/monitoring/dashboard"
-import { PageHeader } from "@/components/page-header"
-import { DashboardSkeleton } from "@/components/monitoring/dashboard-skeleton"
+import { MonitoringDashboard } from "@/components/monitoring/dashboard";
+import { DashboardSkeleton } from "@/components/monitoring/dashboard-skeleton";
+import { PageHeader } from "@/components/page-header";
+import { Suspense } from "react";
 
 export default function HomePage() {
   return (
@@ -11,5 +11,5 @@ export default function HomePage() {
         <MonitoringDashboard />
       </Suspense>
     </main>
-  )
+  );
 }

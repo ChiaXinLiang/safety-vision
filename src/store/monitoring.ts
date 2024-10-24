@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { create } from "zustand"
-import { persist } from "zustand/middleware"
-import { MOCK_AREAS } from "@/lib/constants/monitoring"
-import type { Area } from "@/lib/types/monitoring"
+import { MOCK_AREAS } from "@/lib/constants/monitoring";
+import type { Area } from "@/lib/types/monitoring";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface MonitoringState {
   areas: Area[]
@@ -21,25 +21,25 @@ interface MonitoringState {
 export const useMonitoringStore = create<MonitoringState>()(
   persist(
     (set, get) => ({
-      areas: MOCK_AREAS,
+      areas: MOCK_AREAS as unknown as Area[],
       selectedAreaIds: MOCK_AREAS.map(area => area.id),
       toggleAreaSelection: (id) => {
         set((state) => {
-          const isSelected = state.selectedAreaIds.includes(id)
+          const isSelected = state.selectedAreaIds.includes(id);
           return {
             selectedAreaIds: isSelected
               ? state.selectedAreaIds.filter((areaId) => areaId !== id)
               : [...state.selectedAreaIds, id]
-          }
-        })
+          };
+        });
       },
       toggleAllAreas: () => {
         set((state) => ({
           selectedAreaIds: state.isAllAreasSelected ? [] : state.areas.map(area => area.id)
-        }))
+        }));
       },
       setSelectedAreaIds: (ids) => {
-        set({ selectedAreaIds: ids })
+        set({ selectedAreaIds: ids });
       },
       addArea: (name, description) => {
         set((state) => ({
@@ -52,30 +52,30 @@ export const useMonitoringStore = create<MonitoringState>()(
               locations: []
             }
           ]
-        }))
+        }));
       },
       updateArea: (id, updates) => {
         set((state) => ({
           areas: state.areas.map((area) =>
             area.id === id ? { ...area, ...updates } : area
           )
-        }))
+        }));
       },
       deleteArea: (id) => {
         set((state) => ({
           areas: state.areas.filter((area) => area.id !== id),
           selectedAreaIds: state.selectedAreaIds.filter((areaId) => areaId !== id)
-        }))
+        }));
       },
       get selectedAreas() {
-        const state = get()
+        const state = get();
         return state.areas.filter((area) => 
           state.selectedAreaIds.includes(area.id)
-        )
+        );
       },
       get isAllAreasSelected() {
-        const state = get()
-        return state.areas.length > 0 && state.selectedAreaIds.length === state.areas.length
+        const state = get();
+        return state.areas.length > 0 && state.selectedAreaIds.length === state.areas.length;
       },
     }),
     {
@@ -84,4 +84,4 @@ export const useMonitoringStore = create<MonitoringState>()(
       skipHydration: true,
     }
   )
-)
+);

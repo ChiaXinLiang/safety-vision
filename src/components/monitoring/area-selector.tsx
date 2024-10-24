@@ -1,41 +1,41 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { useMonitoringStore } from "@/store/monitoring"
-import { SheetClose } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { SheetClose } from "@/components/ui/sheet";
+import { useMonitoringStore } from "@/store/monitoring";
+import * as React from "react";
 
 export function AreaSelector() {
-  const store = useMonitoringStore()
+  const store = useMonitoringStore();
   const [localSelectedIds, setLocalSelectedIds] = React.useState<string[]>(
     store.selectedAreaIds.length > 0 ? store.selectedAreaIds : store.areas.map(area => area.id)
-  )
+  );
 
   // Keep local state in sync with store
   React.useEffect(() => {
-    setLocalSelectedIds(store.selectedAreaIds)
-  }, [store.selectedAreaIds])
+    setLocalSelectedIds(store.selectedAreaIds);
+  }, [store.selectedAreaIds]);
 
   const handleLocalToggle = (id: string) => {
     setLocalSelectedIds(prev => 
       prev.includes(id) 
         ? prev.filter(areaId => areaId !== id)
         : [...prev, id]
-    )
-  }
+    );
+  };
 
   const handleLocalToggleAll = () => {
     setLocalSelectedIds(prev => 
       prev.length === store.areas.length ? [] : store.areas.map(area => area.id)
-    )
-  }
+    );
+  };
 
   const handleConfirm = () => {
-    store.setSelectedAreaIds(localSelectedIds)
-  }
+    store.setSelectedAreaIds(localSelectedIds);
+  };
 
-  const isLocalAllSelected = localSelectedIds.length === store.areas.length
+  const isLocalAllSelected = localSelectedIds.length === store.areas.length;
 
   return (
     <div className="flex h-full flex-col">
@@ -81,5 +81,5 @@ export function AreaSelector() {
         </SheetClose>
       </div>
     </div>
-  )
+  );
 }

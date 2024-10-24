@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { MonitoringLocation } from "./location"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { MonitoringLocation } from "./location";
 
 interface MonitoringAreaProps {
   area: {
@@ -36,5 +36,5 @@ export function MonitoringArea({ area }: MonitoringAreaProps) {
         ))}
       </div>
     </Card>
-  )
+  );
 }
