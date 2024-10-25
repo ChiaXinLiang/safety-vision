@@ -38,19 +38,6 @@ export function PageHeader() {
           </SheetContent>
         </Sheet>
       </div>
-      <div className="flex items-center gap-2">
-        <Button variant="outline" onClick={() => router.push("/media-library")}>
-          Media Library
-        </Button>
-        <Button variant="outline">Data Analysis</Button>
-        <Button variant="outline" onClick={() => router.push("/area-management")}>
-          Area Management
-        </Button>
-        <Button variant="outline" onClick={() => router.push("/alert-center")}>
-          Alert Center
-        </Button>
-        <Button variant="outline">Setting</Button>
-      </div>
     </div>
   );
 }
