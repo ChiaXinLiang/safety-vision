@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { GearIcon, HomeIcon, VideoIcon } from "@radix-ui/react-icons";
+import { GearIcon, HomeIcon, RocketIcon, VideoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -12,6 +12,8 @@ export function Navbar() {
   const links = [
     { href: "/", label: "Home", icon: HomeIcon },
     { href: "/media-library", label: "Media Library", icon: VideoIcon },
+    { href: "/alert-center", label: "Alert Center" },
+    { href: "/ai-models", label: "AI Models", icon: RocketIcon },
     { href: "/area-management", label: "Area Management" },
     { href: "/settings", label: "Settings", icon: GearIcon },
   ];
@@ -23,7 +25,7 @@ export function Navbar() {
           const Icon = link.icon;
           return (
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
+            // @ts-ignore
             <Link key={link.href} href={link.href} passHref legacyBehavior>
               <Button
                 variant="ghost"

@@ -1,4 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 const MOCK_ALERTS = [
   {
@@ -19,11 +21,19 @@ const MOCK_ALERTS = [
 ] as const;
 
 export function AlertList() {
+  const router = useRouter();
+
   return (
     <Card>
       <div className="flex items-center justify-between border-b p-4">
         <h2 className="font-semibold">Recent Alerts</h2>
-        <div className="text-sm font-medium text-blue-600">Alert Center</div>
+        <Button 
+          variant="link" 
+          className="text-sm font-medium text-blue-600"
+          onClick={() => router.push("/alert-center")}
+        >
+          Alert Center
+        </Button>
       </div>
       <div className="p-4">
         <div className="space-y-4">
