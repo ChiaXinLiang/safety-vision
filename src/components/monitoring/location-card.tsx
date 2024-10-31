@@ -1,59 +1,61 @@
 "use client";
 
+import { CameraFeed } from "@/components/monitoring/camera-feed";
 import { Button } from "@/components/ui/button";
-import type { Location } from "@/lib/types/monitoring";
-import { useRouter, useSearchParams } from "next/navigation";
-import { CameraFeed } from "./camera-feed";
+import { Card } from "@/components/ui/card";
+import type { Location } from "@/lib/types/location";
+import { useRouter } from "next/navigation";
 
 interface LocationCardProps {
-  location: Location
+  areaId: string;
+  location: Location;
+  className?: string;
 }
 
-export function LocationCard({ location }: LocationCardProps) {
+export function LocationCard({ areaId, location, className }: LocationCardProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const mode = searchParams.get("mode") || "raw";
   const mainCamera = location.cameras.find((c) => c.type === "main");
-  // Limit to first 4 sub cameras
-  const subCameras = location.cameras
-    .filter((c) => c.type === "sub")
-    .slice(0, 4);
 
-  const toggleMode = () => {
-    if (!mainCamera) return;
-    const newMode = mode === "ai" ? "raw" : "ai";
-    router.push(`/camera/${mainCamera.id}?mode=${newMode}`);
+  const handleEditLocation = () => {
+    router.push(`/area-management/${areaId}/location/${location.id}`);
+  };
+
+  const handleViewCamera = (cameraId: string) => {
+    router.push(`/camera/${cameraId}`);
   };
 
   return (
-    <div className="rounded-lg bg-[#40B7CB] p-4">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-lg font-medium text-white">{location.name}</h3>
-        <Button size="sm" variant="secondary" onClick={toggleMode}>
-          Switch {mode === "ai" ? "Raw Screen" : "AI Analysis"}
-        </Button>
-      </div>
-      <div className="grid gap-4 md:grid-cols-[2fr_1fr]">
-        {/* Main Camera */}
+    <Card className={className}>
+      <div className="relative">
         {mainCamera && (
           <CameraFeed
             camera={mainCamera}
             className="aspect-video w-full"
           />
         )}
-        {/* Sub cameras in 2x2 grid */}
-        {subCameras.length > 0 && (
-          <div className="grid grid-cols-2 gap-2">
-            {subCameras.map((camera) => (
-              <CameraFeed
-                key={camera.id}
-                camera={camera}
-                className="aspect-video w-full"
-              />
-            ))}
-          </div>
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+          <h3 className="mb-1 text-lg font-semibold text-white">
+            {location.name}
+          </h3>
+          <p className="text-sm text-gray-300">
+            {location.cameras.length} Camera{location.cameras.length !== 1 && "s"}
+          </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2 p-4">
+        <Button variant="outline" onClick={handleEditLocation}>
+          Edit Location
+        </Button>
+        {mainCamera && (
+          <Button
+            variant="outline"
+            onClick={() => handleViewCamera(mainCamera.id)}
+          >
+            View Camera
+          </Button>
         )}
       </div>
-    </div>
+    </Card>
   );
 }

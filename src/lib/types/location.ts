@@ -1,19 +1,18 @@
 import type { Camera } from "./camera";
-import type { LocationType } from "../constants/area";
-import { Zone } from "./zone";
+import type { Zone } from "./zone";
 
 export interface Location {
-    id: string;
-    name: string;
-    type: LocationType;
-    description: string;
-    cameras: Camera[];
-    zones: Zone[];
-    settings: {
-        crowdAnalysis: {
-            enabled: boolean;
-            maxDensity: number;
-            alertThreshold: number;
-        };
+  id: string;
+  name: string;
+  type: "production" | "storage" | "loading";
+  description: string;
+  cameras: Camera[];
+  settings: {
+    crowdAnalysis: {
+      enabled: boolean;
+      maxDensity: number;
+      alertThreshold: number;
     };
+  };
+  zones: Zone[];
 }

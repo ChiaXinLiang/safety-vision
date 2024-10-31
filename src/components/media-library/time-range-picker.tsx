@@ -1,6 +1,5 @@
 "use client";
 
-import type { TimeRange } from "@/app/media-library/page";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -8,86 +7,100 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { CalendarIcon } from "@radix-ui/react-icons";
+import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 import { useState } from "react";
 
-interface TimeRangePickerProps {
-  value: TimeRange
-  onChange: (range: TimeRange) => void
+interface TimeRange {
+  start: Date;
+  end: Date;
 }
 
-export function TimeRangePicker({ value, onChange }: TimeRangePickerProps) {
-  const [isOpen, setIsOpen] = useState(false);
+interface TimeRangePickerProps {
+  value: TimeRange;
+  onChange: (value: TimeRange) => void;
+  className?: string;
+}
 
-  const formatTimeRange = (range: TimeRange) => {
-    return `${format(range.start, "yyyy/MM/dd HH:mm")} - ${format(range.end, "HH:mm")}`;
-  };
+export function TimeRangePicker({
+  value,
+  onChange,
+  className,
+}: TimeRangePickerProps) {
+  const [isStartDateOpen, setIsStartDateOpen] = useState(false);
+  const [isEndDateOpen, setIsEndDateOpen] = useState(false);
 
   const handleDateSelect = (date: Date | undefined) => {
     if (!date) return;
 
-    // Keep the same hours but update the date
-    const newStart = new Date(date);
-    newStart.setHours(value.start.getHours(), value.start.getMinutes());
-    
-    const newEnd = new Date(date);
-    newEnd.setHours(value.end.getHours(), value.end.getMinutes());
-
-    onChange({ start: newStart, end: newEnd });
-  };
-
-  const handleTimeChange = (type: "start" | "end", timeStr: string) => {
-    const [hours, minutes] = timeStr.split(":").map(Number);
-    const newDate = new Date(type === "start" ? value.start : value.end);
-    newDate.setHours(hours, minutes);
-    
-    onChange({
-      ...value,
-      [type]: newDate
-    });
+    if (isStartDateOpen) {
+      onChange({
+        start: date,
+        end: date > value.end ? date : value.end,
+      });
+      setIsStartDateOpen(false);
+    } else if (isEndDateOpen) {
+      onChange({
+        start: date < value.start ? date : value.start,
+        end: date,
+      });
+      setIsEndDateOpen(false);
+    }
   };
 
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>
-        <Button variant="outline" className="w-[300px] justify-start text-left font-normal">
-          <CalendarIcon className="mr-2 h-4 w-4" />
-          {formatTimeRange(value)}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
-        <div className="p-4">
-          <div className="mb-4 grid gap-2">
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="text-sm font-medium">Start Time</label>
-                <input
-                  type="time"
-                  value={format(value.start, "HH:mm")}
-                  onChange={(e) => handleTimeChange("start", e.target.value)}
-                  className="mt-1 w-full rounded-md border px-2 py-1"
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium">End Time</label>
-                <input
-                  type="time"
-                  value={format(value.end, "HH:mm")}
-                  onChange={(e) => handleTimeChange("end", e.target.value)}
-                  className="mt-1 w-full rounded-md border px-2 py-1"
-                />
-              </div>
-            </div>
-          </div>
+    <div className={cn("grid gap-2", className)}>
+      <Popover open={isStartDateOpen} onOpenChange={setIsStartDateOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant={"outline"}
+            className={cn(
+              "w-[240px] justify-start text-left font-normal",
+              !value.start && "text-muted-foreground"
+            )}
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {value.start ? (
+              format(value.start, "PPP")
+            ) : (
+              <span>Pick a start date</span>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
           <Calendar
             mode="single"
             selected={value.start}
             onSelect={handleDateSelect}
-            initialFocus
           />
-        </div>
-      </PopoverContent>
-    </Popover>
+        </PopoverContent>
+      </Popover>
+
+      <Popover open={isEndDateOpen} onOpenChange={setIsEndDateOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant={"outline"}
+            className={cn(
+              "w-[240px] justify-start text-left font-normal",
+              !value.end && "text-muted-foreground"
+            )}
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {value.end ? format(value.end, "PPP") : <span>Pick an end date</span>}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={value.end}
+            onSelect={handleDateSelect}
+            disabled={(date) =>
+              date < value.start || date > new Date()
+            }
+          />
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 }

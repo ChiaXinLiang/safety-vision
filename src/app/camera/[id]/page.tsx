@@ -1,9 +1,9 @@
 "use client";
 
+import CameraViewer from "@/components/monitoring/camera-viewer";
 import { Button } from "@/components/ui/button";
 import { findCameraById } from "@/lib/utils/monitoring";
 import { useMonitoringStore } from "@/store/monitoring";
-import { CameraViewer } from "@/components/monitoring/camera-viewer";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 export default function CameraPage() {
@@ -49,8 +49,8 @@ export default function CameraPage() {
       <div className="space-y-4">
         <div className="overflow-hidden rounded-lg bg-black">
           <CameraViewer
-            imageSrc={currentView}
-            alt={`${camera.name} feed`}
+            src={currentView}
+            className="w-full h-full"
           />
         </div>
 

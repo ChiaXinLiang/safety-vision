@@ -1,6 +1,6 @@
 "use client";
 
-import { CameraViewer } from "@/components/monitoring/camera-viewer";
+import CameraViewer from "@/components/monitoring/camera-viewer";
 import { ZoneDialog } from "@/components/monitoring/zone-dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -62,8 +62,8 @@ export default function ZoneSettingPage() {
                 <div className="space-y-4">
                     <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-gray-100">
                         <CameraViewer
-                            imageSrc={mainCamera.views.raw}
-                            alt="Main Camera Latest Frame preview"
+                            src={mainCamera.views.raw}
+                            className="w-full h-full"
                         />
                     </div>
                 </div>
@@ -81,7 +81,7 @@ export default function ZoneSettingPage() {
                     <div className="space-y-2">
                         {location.zones.length === 0 ? (
                             <div className="rounded-lg border border-dashed p-4 text-center text-sm text-muted-foreground">
-                                No zones created yet. Click &quot;Add Zone&quot; to create one.
+                                No zones created yet. Click &ldquo;Add Zone&rdquo; to create one.
                             </div>
                         ) : (
                             location.zones.map((zone) => (

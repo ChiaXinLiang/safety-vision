@@ -2,18 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { CameraFeed } from "./camera-feed";
+import type { Camera } from "@/lib/types/camera";
 
 interface MonitoringLocationProps {
   location: {
-    id: string
-    name: string
-    cameras: {
-      id: string
-      name: string
-      type: "main" | "sub"
-      lastIncident: string
-    }[]
-  }
+    id: string;
+    name: string;
+    cameras: Camera[];
+  };
 }
 
 export function MonitoringLocation({ location }: MonitoringLocationProps) {
@@ -50,3 +46,6 @@ export function MonitoringLocation({ location }: MonitoringLocationProps) {
     </div>
   );
 }
+
+// Re-export for use in other components
+export type { MonitoringLocationProps };

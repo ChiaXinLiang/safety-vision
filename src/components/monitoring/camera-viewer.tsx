@@ -3,14 +3,14 @@
 import { useEffect, useRef, useCallback } from "react";
 import { Card } from "@/components/ui/card";
 
-interface CameraViewerProps {
+export interface CameraViewerProps {
   src: string;
   width?: number;
   height?: number;
   className?: string;
 }
 
-export function CameraViewer({
+export default function CameraViewer({
   src,
   width = 640,
   height = 480,

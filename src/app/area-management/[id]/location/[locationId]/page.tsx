@@ -1,6 +1,6 @@
 "use client";
 
-import { CameraViewer } from "@/components/monitoring/camera-viewer";
+import CameraViewer from "@/components/monitoring/camera-viewer";
 import { Button } from "@/components/ui/button";
 import { useMonitoringStore } from "@/store/monitoring";
 import { useParams, useRouter } from "next/navigation";
@@ -32,8 +32,8 @@ export default function LocationEditPage() {
         <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-gray-100">
           {mainCamera ? (
             <CameraViewer
-              imageSrc={mainCamera.views.raw}
-              alt="Main Camera Latest Frame preview"
+              src={mainCamera.views.raw}
+              className="w-full h-full"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-muted-foreground">

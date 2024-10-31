@@ -3,22 +3,18 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { MonitoringLocation } from "./location";
+import type { Camera } from "@/lib/types/camera";
 
 interface MonitoringAreaProps {
   area: {
-    id: string
-    name: string
+    id: string;
+    name: string;
     locations: {
-      id: string
-      name: string
-      cameras: {
-        id: string
-        name: string
-        type: "main" | "sub"
-        lastIncident: string
-      }[]
-    }[]
-  }
+      id: string;
+      name: string;
+      cameras: Camera[];
+    }[];
+  };
 }
 
 export function MonitoringArea({ area }: MonitoringAreaProps) {
