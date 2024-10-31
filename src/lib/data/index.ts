@@ -1,4 +1,4 @@
-import type { Area, Alert } from '../types';
+import type { Area, Alert } from "../types";
 
 export const MOCK_AREAS: Area[] = [
     {

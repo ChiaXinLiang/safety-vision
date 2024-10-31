@@ -81,7 +81,7 @@ export default function ZoneSettingPage() {
                     <div className="space-y-2">
                         {location.zones.length === 0 ? (
                             <div className="rounded-lg border border-dashed p-4 text-center text-sm text-muted-foreground">
-                                No zones created yet. Click "Add Zone" to create one.
+                                No zones created yet. Click &quot;Add Zone&quot; to create one.
                             </div>
                         ) : (
                             location.zones.map((zone) => (
