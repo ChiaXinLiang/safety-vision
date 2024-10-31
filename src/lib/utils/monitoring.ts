@@ -1,12 +1,10 @@
-import type { Area } from "@/lib/types/monitoring";
+import type { Area } from "@/lib/types/area";
+import type { Camera } from "@/lib/types/camera";
 
-interface CameraWithContext {
-  id: string
-  name: string
-  type: "main" | "sub"
-  lastIncident: string
-  area: Area
-  location: Area["locations"][0]
+export interface CameraWithContext {
+  camera: Camera;
+  area: Area;
+  location: Area["locations"][0];
 }
 
 export function findCameraById(areas: Area[], cameraId: string): CameraWithContext | undefined {
@@ -15,7 +13,7 @@ export function findCameraById(areas: Area[], cameraId: string): CameraWithConte
       const camera = location.cameras.find((c) => c.id === cameraId);
       if (camera) {
         return {
-          ...camera,
+          camera,
           area,
           location,
         };
