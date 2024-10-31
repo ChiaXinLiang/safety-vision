@@ -3,6 +3,7 @@
 import CameraViewer from "@/components/monitoring/camera-viewer";
 import type { Camera } from "@/lib/types/camera";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 interface CameraFeedProps {
   camera: Camera;
@@ -10,8 +11,16 @@ interface CameraFeedProps {
 }
 
 export function CameraFeed({ camera, className }: CameraFeedProps) {
+  const router = useRouter();
+
   return (
-    <div className={cn("relative overflow-hidden rounded-lg", className)}>
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-lg cursor-pointer transition-opacity hover:opacity-90",
+        className
+      )}
+      onClick={() => router.push(`/camera/${camera.id}`)}
+    >
       <CameraViewer
         src={camera.views.raw}
         className="w-full h-full"

@@ -43,6 +43,26 @@ export const MOCK_AREAS: Area[] = [
                         views: {
                             raw: "/camera/sub-camera.png"
                         }
+                    },
+                    {
+                        id: "camera14",
+                        name: "Sub Camera 3",
+                        type: "sub",
+                        status: "online",
+                        lastIncident: "1h ago",
+                        views: {
+                            raw: "/camera/sub-camera.png"
+                        }
+                    },
+                    {
+                        id: "camera15",
+                        name: "Sub Camera 4",
+                        type: "sub",
+                        status: "online",
+                        lastIncident: "30m ago",
+                        views: {
+                            raw: "/camera/sub-camera.png"
+                        }
                     }
                 ],
                 zones: [],
@@ -87,6 +107,26 @@ export const MOCK_AREAS: Area[] = [
                         type: "sub",
                         status: "online",
                         lastIncident: "45m ago",
+                        views: {
+                            raw: "/camera/sub-camera.png"
+                        }
+                    },
+                    {
+                        id: "camera16",
+                        name: "Storage Sub 3",
+                        type: "sub",
+                        status: "online",
+                        lastIncident: "15m ago",
+                        views: {
+                            raw: "/camera/sub-camera.png"
+                        }
+                    },
+                    {
+                        id: "camera17",
+                        name: "Storage Sub 4",
+                        type: "sub",
+                        status: "online",
+                        lastIncident: "20m ago",
                         views: {
                             raw: "/camera/sub-camera.png"
                         }
@@ -145,6 +185,26 @@ export const MOCK_AREAS: Area[] = [
                         views: {
                             raw: "/camera/sub-camera.png"
                         }
+                    },
+                    {
+                        id: "camera18",
+                        name: "Loading Sub 3",
+                        type: "sub",
+                        status: "online",
+                        lastIncident: "40m ago",
+                        views: {
+                            raw: "/camera/sub-camera.png"
+                        }
+                    },
+                    {
+                        id: "camera19",
+                        name: "Loading Sub 4",
+                        type: "sub",
+                        status: "online",
+                        lastIncident: "25m ago",
+                        views: {
+                            raw: "/camera/sub-camera.png"
+                        }
                     }
                 ],
                 zones: [],
@@ -199,6 +259,26 @@ export const MOCK_AREAS: Area[] = [
                         type: "sub",
                         status: "online",
                         lastIncident: "1h ago",
+                        views: {
+                            raw: "/camera/sub-camera.png"
+                        }
+                    },
+                    {
+                        id: "camera20",
+                        name: "Sorting Sub 4",
+                        type: "sub",
+                        status: "online",
+                        lastIncident: "35m ago",
+                        views: {
+                            raw: "/camera/sub-camera.png"
+                        }
+                    },
+                    {
+                        id: "camera21",
+                        name: "Sorting Sub 5",
+                        type: "sub",
+                        status: "online",
+                        lastIncident: "50m ago",
                         views: {
                             raw: "/camera/sub-camera.png"
                         }

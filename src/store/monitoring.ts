@@ -1,9 +1,9 @@
 "use client";
 
-import { create } from "zustand";
+import { create, type StateCreator } from "zustand";
 import { persist } from "zustand/middleware";
 import type { Area } from "../lib/types/area";
-import { MOCK_AREAS } from "../lib/data/mock-db";
+import { MOCK_AREAS } from "../lib/data/index";
 import type { Zone } from "../lib/types/zone";
 
 interface MonitoringState {
@@ -21,6 +21,8 @@ interface MonitoringState {
   updateZone: (areaId: string, locationId: string, zoneId: string, updates: Partial<Zone>) => void;
   deleteZone: (areaId: string, locationId: string, zoneId: string) => void;
 }
+
+type PersistState = StateCreator<MonitoringState, [], [], MonitoringState>;
 
 export const useMonitoringStore = create<MonitoringState>()(
   persist(
@@ -166,5 +168,5 @@ export const useMonitoringStore = create<MonitoringState>()(
       version: 1,
       skipHydration: true,
     }
-  )
+  ) as PersistState
 );
