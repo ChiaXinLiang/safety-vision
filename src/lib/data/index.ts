@@ -34,16 +34,16 @@ export const MOCK_AREAS: Area[] = [
                             raw: "/camera/sub-camera.png"
                         }
                     },
-                    {
-                        id: "camera3",
-                        name: "Sub Camera 2",
-                        type: "sub",
-                        status: "online",
-                        lastIncident: "2h ago",
-                        views: {
-                            raw: "/camera/sub-camera.png"
-                        }
-                    },
+                    // {
+                    //     id: "camera3",
+                    //     name: "Sub Camera 2",
+                    //     type: "sub",
+                    //     status: "online",
+                    //     lastIncident: "2h ago",
+                    //     views: {
+                    //         raw: "/camera/sub-camera.png"
+                    //     }
+                    // },
                     {
                         id: "camera14",
                         name: "Sub Camera 3",
@@ -111,26 +111,26 @@ export const MOCK_AREAS: Area[] = [
                             raw: "/camera/sub-camera.png"
                         }
                     },
-                    {
-                        id: "camera16",
-                        name: "Storage Sub 3",
-                        type: "sub",
-                        status: "online",
-                        lastIncident: "15m ago",
-                        views: {
-                            raw: "/camera/sub-camera.png"
-                        }
-                    },
-                    {
-                        id: "camera17",
-                        name: "Storage Sub 4",
-                        type: "sub",
-                        status: "online",
-                        lastIncident: "20m ago",
-                        views: {
-                            raw: "/camera/sub-camera.png"
-                        }
-                    }
+                    // {
+                    //     id: "camera16",
+                    //     name: "Storage Sub 3",
+                    //     type: "sub",
+                    //     status: "online",
+                    //     lastIncident: "15m ago",
+                    //     views: {
+                    //         raw: "/camera/sub-camera.png"
+                    //     }
+                    // },
+                    // {
+                    //     id: "camera17",
+                    //     name: "Storage Sub 4",
+                    //     type: "sub",
+                    //     status: "online",
+                    //     lastIncident: "20m ago",
+                    //     views: {
+                    //         raw: "/camera/sub-camera.png"
+                    //     }
+                    // }
                 ],
                 zones: [],
                 settings: {

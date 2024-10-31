@@ -33,7 +33,7 @@ export function AreaCard({ area }: AreaCardProps) {
               <h3 className="text-base sm:text-base lg:text-lg font-medium text-white">{location.name}</h3>
             </div>
 
-            <div className="grid gap-2 sm:gap-2 lg:gap-4 flex-col sm:flex-col lg:grid-cols-[1.5fr_1fr]">
+            <div className="grid gap-2 sm:gap-2 lg:gap-4 grid-cols-1 lg:grid-cols-[1.5fr_1fr]">
               {/* Main Camera */}
               {location.cameras.find(c => c.type === "main") && (
                 <div className="rounded-lg bg-white p-2 sm:p-2 lg:p-4">
@@ -59,26 +59,28 @@ export function AreaCard({ area }: AreaCardProps) {
 
               {/* Sub Cameras */}
               {location.cameras.filter(c => c.type === "sub").length > 0 && (
-                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-2 sm:gap-2 lg:gap-4">
-                  {location.cameras
-                    .filter(c => c.type === "sub")
-                    .slice(0, 4)
-                    .map((camera, index) => (
-                      <div key={camera.id} className="rounded-lg bg-white p-2 sm:p-2 lg:p-4">
-                        <CameraFeed
-                          camera={camera}
-                          className="aspect-video w-full rounded-lg"
-                        />
-                        <div className="mt-1 sm:mt-1 lg:mt-2">
-                          <div className="text-xs sm:text-xs lg:text-sm font-medium">
-                            {camera.name} (Sub Camera {index + 1})
-                          </div>
-                          <div className="text-[10px] sm:text-[10px] lg:text-xs text-muted-foreground">
-                            Last incident: {camera.lastIncident}
+                <div className="bg-white rounded-lg p-2 sm:p-2 lg:p-4">
+                  <div className="grid grid-cols-2 gap-2 sm:gap-2 lg:gap-4">
+                    {location.cameras
+                      .filter(c => c.type === "sub")
+                      .slice(0, 4)
+                      .map((camera, index) => (
+                        <div key={camera.id}>
+                          <CameraFeed
+                            camera={camera}
+                            className="aspect-video w-full rounded-lg"
+                          />
+                          <div className="mt-1 sm:mt-1 lg:mt-2">
+                            <div className="text-xs sm:text-xs lg:text-sm font-medium">
+                              {camera.name} (Sub Camera {index + 1})
+                            </div>
+                            <div className="text-[10px] sm:text-[10px] lg:text-xs text-muted-foreground">
+                              Last incident: {camera.lastIncident}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                  </div>
                 </div>
               )}
             </div>
