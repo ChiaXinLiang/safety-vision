@@ -9,7 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { GearIcon, HamburgerMenuIcon, HomeIcon, RocketIcon, VideoIcon } from "@radix-ui/react-icons";
+import { GearIcon, HamburgerMenuIcon, HomeIcon, VideoIcon, RocketIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -18,7 +18,7 @@ const links = [
   { href: "/", label: "Home", icon: HomeIcon },
   { href: "/media-library", label: "Media Library", icon: VideoIcon },
   { href: "/alert-center", label: "Alert Center" },
-  { href: "/ai-models", label: "AI Models", icon: RocketIcon },
+  { href: "/settings/demo", label: "Demo", icon: RocketIcon },
   { href: "/area-management", label: "Area Management" },
   { href: "/settings", label: "Settings", icon: GearIcon },
 ];
